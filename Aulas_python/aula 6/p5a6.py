@@ -1,0 +1,22 @@
+import math
+g = 9.81  # Aceleração da gravidade (m/s²)
+R_TERRA = 6371000  # Raio médio da Terra (m)
+h0 = 100000  # Altitude inicial (m)
+theta = float(input("Digite o ângulo de entrada (em graus): "))
+v = float(input("Digite a velocidade inicial (m/s): "))
+t = float(input("Digite o tempo de voo (s): "))
+theta_rad=math.radians(theta)
+vx = v * math.cos(theta_rad)
+vy = v * math.sin(theta_rad)
+x = vx * t
+y = h0 + vy * t - 0.5 * g * t*2
+d = R_TERRA * math.atan(x / (R_TERRA + y))
+vf = math.sqrt(vx*2 + (vy - g*t)*2)
+theta_f =math.degrees(math.atan2(vy, vx))
+ac = v**2 / (R_TERRA + y)
+print(f"\nResultados da reentrada do foguete:")
+print(f"Posição final: x = {x:.2f} m, y = {y:.2f} m")
+print(f"Distância percorrida na superfície: {d:.2f} m")
+print(f"Velocidade final: {vf:.2f} m/s")
+print(f"Ângulo final: {theta_f:.2f} graus")
+print(f"Aceleração centrípeta: {ac:.2f} m/s²")
